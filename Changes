@@ -1,6 +1,4 @@
-Revision history for Perl extension Task::Digest.
+Revision history for Task-Digest
 
-0.01  Wed Jul 25 12:01:55 2007
-	- original version; created by h2xs 1.23 with options
-		--compat-version=5.6.0 -AXcfn Task::Digest
-
+0.01  Fri Nov 19 20:52:44 UTC 2010
+    - Initial distribution.

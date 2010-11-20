@@ -1,107 +1,78 @@
-use inc::Module::Install;
+use strict;
+use warnings;
+use ExtUtils::MakeMaker;
 
-    name                'Task-Digest';
-    author              'Kevin W. Henwood <Khen1950fx@aol.com>';
-    version             '0.01';
-    version_from        'lib/Task/Digest.pm';
-    all_from            'lib/Task/Digest.pm';
-    
-    requires            'XSLoader'                              => 0;
-    requires            'AutoLoader'                            => 0;
-    requires            'Data::Dumper'                          => 0;
-    requires            'Test::More'                            => 0;
-    requires            'File::Spec'                            => 0;
-    requires            'File::Temp'                            => 0;
-    requires            'bignum'                                => 0;
-    requires            'Text::Balanced'                        => 0;
-    requires            'Filter::Simple'                        => 0;
-    requires            'version'                               => 0;
-    requires            'Smart::Comments'                       => 0;
-    requires            'Pod::Usage'                            => 0;
-    requires            'Getopt::Long'                          => 0;
-    requires            'Digest'                                => 0;
-    requires            'Digest::MD5'                           => 0;
-    requires            'Digest::TransformPath'                 => 0;
-    requires            'Digest::SHA1'                          => 0;
-    requires            'SHA'                                   => 0;
-    requires            'MIME::Base64'                          => 0;
-    requires            'MIME::Base64::Perl'                    => 0;
-    requires            'Digest::SHA2'                          => 0;
-    requires            'Digest::Whirlpool'                     => 0;
-    requires            'Digest::Perl::MD5'                     => 0;
-    requires            'Digest::Perl::MD4'                     => 0;
-    requires            'Digest::MD5::M4p'                      => 0;
-    requires            'Digest::BubbleBabble'                  => 0;
-    requires            'Digest::Tiger'                         => 0;
-    requires            'LWP::UserAgent'                        => 0;
-    requires            'Digest::MD5::File'                     => 0;
-    requires            'Digest::CRC'                           => 0;
-    requires            'Digest::Crc32'                         => 0;
-    requires            'Algorithm::GDiffDelta'                 => 0;
-    requires            'Digest::Adler32'                       => 0;
-    requires            'Digest::HMAC'                          => 0;
-    requires            'Digest::MD2'                           => 0;
-    requires            'MD5'                                   => 0;
-    requires            'Crypt::IDEA'                           => 0;
-    requires            'Crypt::DES'                            => 0;
-    requires            'Crypt::Blowfish'                       => 0;
-    requires            'Crypt::Blowfish_PP'                    => 0;
-    requires            'Crypt::CAST5'                          => 0;
-    requires            'Crypt::DES_PP'                         => 0;
-    requires            'Crypt::Rijndael'                       => 0;
-    requires            'Crypt::TEA'                            => 0;
-    requires            'Crypt::Twofish2'                       => 0;
-    requires            'Crypt::CBC'                            => 0;
-    requires            'Crypt::CBCeasy'                        => 0;
-    requires            'Crypt::SmbHash'                        => 0;
-    requires            'Digest::DMAC'                          => 0;
-    requires            'Digest::EMAC'                          => 0;
-    requires            'Digest::Haval256'                      => 0;
-    requires            'MIME::Base32'                          => 0;
-    requires            'Class::Accessor'                       => 0;
-    requires            'Perl::Critic'                          => 0;
-    requires            'MIME::Base32'                          => 0;
-    requires            'Sub::Install'                          => 0;
-    requires            'Data::OptList'                         => 0;
-    requires            'Params::Util'                          => 0;
-    requires            'Sub::Exporter'                         => 0;
-    requires            'Storable'                              => 0;
-    requires            'Test::use::ok'                         => 0;
-    requires            'Test::Exception'                       => 0;
-    requires            'Digest::SHA'                           => 0;
-    requires            'UNIVERSAL::can'                        => 0;
-    requires            'Crypt::CFB'                            => 0;
-    requires            'Crypt::RC5'                            => 0;
-    requires            'Crypt::RC6'                            => 0;
-    requires            'RIPEMD160'                             => 0;
-    requires            'Crypt::RIPEMD160'                      => 0;
-    requires            'String::CRC32'                         => 0;
-    requires            'String::CRC'                           => 0;
-    requires            'Crypt::OpenSSL::Random'                => 0;
-    requires            'Crypt::OpenSSL::RSA'                   => 0;
-    requires            'Crypt::Eksblowfish'                    => 0;
-    requires            'Algorithm::RabinKarp'                  => 0;
-    requires            'Text::Tabs'                            => 0;
-    requires            'File::Stat::Bits'                      => 0;
-    requires            'Algorithm::Diff'                       => 0;
-    requires            'Digest::MultiHash'                     => 0;
-    requires            'Digest::JHash'                         => 0;
-    requires            'Digest::Elf'                           => 0;
-    requires            'File::Find::Rule'                      => 0;
-    requires            'Time::Local'                           => 0;
-    requires            'Digest::Hashcash'                      => 0;
-    requires            'Digest::CMAC'                          => 0;
-    requires            'Digest::ManberHash'                    => 0;
-    requires            'Digest::SV1'                           => 0;
-    requires            'Digest::DJB'                           => 0;
-    requires            'Digest::FNV'                           => 0;
-    requires            'Digest::Pearson'                       => 0;
-    requires            'Digest::Pearson::PurePerl'             => 0;
-    
-    build_requires      'Test::More'          => 0;
-    build_requires      'Test::Pod'           => 0;
-    build_requires      'Test::Pod::Coverage' => 0;
+# Digest::CubeHash is currently using an unauthorized namespace.
+my @prereq;
+unless (eval 'use Digest::CubeHash; 1') {
+    push @prereq, 'G/GR/GRAY/Digest-CubeHash-0.03.tar.gz' => 0;
+}
 
-auto_install;
-WriteAll;    
-    
+my %conf = (
+    NAME          => 'Task::Digest',
+    AUTHOR        => 'gray <gray@cpan.org>',
+    LICENSE       => 'perl',
+    VERSION_FROM  => 'lib/Task/Digest.pm',
+    ABSTRACT_FROM => 'lib/Task/Digest.pm',
+    PREREQ_PM => {
+        'Digest::BLAKE'             => 0,
+        'Digest::BMW'               => 0,
+        # 'Digest::CubeHash'          => 0,
+        'Digest::ECHO'              => 0,
+        'Digest::Fugue'             => 0,
+        'Digest::Groestl'           => 0,
+        'Digest::Hamsi'             => 0,
+        'Digest::JH'                => 0,
+        'Digest::Keccak'            => 0,
+        'Digest::Luffa'             => 0,
+        'Digest::MD2'               => 0,
+        'Digest::MD4'               => 0,
+        'Digest::MD5'               => 0,
+        'Digest::MD6'               => 0,
+        'Digest::Perl::MD4'         => 0,
+        'Digest::Perl::MD5'         => 0,
+        'Digest::SHA'               => 0,
+        'Digest::SHA1'              => 0,
+        'Digest::SHA::PurePerl'     => 0,
+        'Digest::SHAvite3'          => 0,
+        'Digest::SIMD'              => 0,
+        'Digest::Shabal'            => 0,
+        'Digest::Skein'             => 0,
+        'Digest::Whirlpool'         => 0,
+        @prereq,
+    },
+    BUILD_REQUIRES => { 'Test::More' => 0.82, },
+    META_MERGE     => {
+        resources => {
+            repository => 'http://github.com/gray/task-digest',
+        },
+    },
+    dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    clean => { FILES    => 'Task-Digest-*' },
+);
+
+my $eumm_version =  do {
+    no warnings 'numeric';
+    eval $ExtUtils::MakeMaker::VERSION;
+};
+delete $conf{META_MERGE} if $eumm_version < 6.46;
+$conf{PREREQ_PM} = {
+    %{ $conf{PREREQ_PM} || {} }, %{ delete $conf{BUILD_REQUIRES} },
+} if ($conf{BUILD_REQUIRES} and $eumm_version < 6.5503);
+
+WriteMakefile(%conf);
+
+
+sub MY::postamble {
+    return <<"    MAKE_FRAG";
+authortest:
+\t\$(MAKE) -e \$(TEST_TYPE) TEST_FILES="xt/*.t"
+    MAKE_FRAG
+}
+
+sub MY::dist_test {
+    my $self = shift;
+    return $self->MM::dist_test . <<"    MAKE_FRAG";
+\tcd \$(DISTVNAME) && \$(MAKE) authortest \$(PASTHRU)
+    MAKE_FRAG
+}

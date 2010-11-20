@@ -1,20 +1,15 @@
 Changes
-inc/Module/AutoInstall.pm
-inc/Module/Install.pm
-inc/Module/Install/AutoInstall.pm
-inc/Module/Install/Base.pm
-inc/Module/Install/Can.pm
-inc/Module/Install/Fetch.pm
-inc/Module/Install/Include.pm
-inc/Module/Install/Makefile.pm
-inc/Module/Install/Metadata.pm
-inc/Module/Install/Win32.pm
-inc/Module/Install/WriteAll.pm
+ex/benchmark.pl
 lib/Task/Digest.pm
 Makefile.PL
-MANIFEST
-META.yml
+MANIFEST			This list of files
 README
-t/all_pod_coverage_ok.t
-t/pod.t
-t/Task-Digest.t
+t/00_compile.t
+xt/kwalitee.t
+xt/perlcritic.t
+xt/perlcriticrc
+xt/pod.t
+xt/pod_coverage.t
+xt/portability_filenames.t
+xt/vars.t
+META.yml                                 Module meta-data (added by MakeMaker)
