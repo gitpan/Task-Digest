@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Task-Digest
-version:            0.01
+version:            0.02
 abstract:           Task to install all available cryptographic message digests
 author:
     - gray <gray@cpan.org>
@@ -11,6 +11,7 @@ configure_requires:
 build_requires:
     Test::More:  0.82
 requires:
+    Crypt::RIPEMD160:     0
     Digest::BLAKE:        0
     Digest::BMW:          0
     Digest::ECHO:         0
