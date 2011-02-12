@@ -3,7 +3,7 @@ package Task::Digest;
 use strict;
 use warnings;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 $VERSION = eval $VERSION;
 
 
@@ -31,7 +31,7 @@ cryptographic message digests.
 
 =item * L<Digest::BMW>
 
-=item * L<Digest::CubeHash>
+=item * L<Digest::CubeHash::XS>
 
 =item * L<Digest::ECHO>
 
@@ -209,7 +209,7 @@ L<http://rt.cpan.org/Public/Dist/Display.html?Name=Task-Digest>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/Task-Digest>
+L<http://search.cpan.org/dist/Task-Digest/>
 
 =back
 
